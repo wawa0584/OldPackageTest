@@ -21,9 +21,12 @@ func main() {
 		2.注册处理逻辑
 		3. 启动服务
 	*/
-	_ = rpc.RegisterName("helloService", &HelloService{})
+	_ = rpc.RegisterName("HelloService", &HelloService{})
+	//启动服务
+	conn, _ := listener.Accept() //当一个新的连接进来的时候
 
-	conn, _ := listener.Accept()
+	//1.callId  2.序列化和反序列化
+	//跨语言调用 1.go语言的rpc序列和反序列协议 2能否替换成常见的序列化
 	rpc.ServeConn(conn)
 
 }
